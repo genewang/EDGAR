@@ -1,0 +1,13 @@
+sec-edgar-downloader==5.0.1
+playwright==1.48.0
+
+# 10-K Extraction Stack
+llama-index==0.10.57
+llama-parse==0.4.2
+llama-index-vector-stores-chroma==0.1.6
+openai==1.12.0
+pydantic==2.6.1
+pandas==2.2.0
+python-dotenv==1.0.0
+pypdf==4.0.1
+
