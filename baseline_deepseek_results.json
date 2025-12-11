@@ -1,0 +1,60 @@
+{
+  "JNJ": {
+    "baseline": {
+      "error": "timed out"
+    }
+  },
+  "AAPL": {
+    "baseline": {
+      "error": "timed out"
+    }
+  },
+  "TSLA": {
+    "baseline": {
+      "error": "model runner has unexpectedly stopped, this may be due to resource limitations or an internal error, check ollama server logs for details (status code: 500)"
+    }
+  },
+  "NVDA": {
+    "baseline": {
+      "company_ticker": "NVDA",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "AMZN": {
+    "baseline": {
+      "company_ticker": "AMZN",
+      "fiscal_year": null,
+      "north_america_revenue": 17000.0,
+      "depreciation_amortization": 854.0,
+      "lease_liabilities": 642.0
+    }
+  },
+  "V": {
+    "baseline": {
+      "error": "model runner has unexpectedly stopped, this may be due to resource limitations or an internal error, check ollama server logs for details (status code: 500)"
+    }
+  },
+  "GOOGL": {
+    "baseline": {
+      "error": "timed out"
+    }
+  },
+  "META": {
+    "baseline": {
+      "error": "timed out"
+    }
+  },
+  "MSFT": {
+    "baseline": {
+      "error": "model runner has unexpectedly stopped, this may be due to resource limitations or an internal error, check ollama server logs for details (status code: 500)"
+    }
+  },
+  "JPM": {
+    "baseline": {
+      "error": "timed out"
+    }
+  }
+}

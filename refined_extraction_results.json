@@ -1,0 +1,92 @@
+{
+  "JNJ": {
+    "refined": {
+      "company_ticker": "JNJ",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "AAPL": {
+    "refined": {
+      "company_ticker": "AAPL",
+      "fiscal_year": 2025,
+      "north_america_revenue": 178353.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "TSLA": {
+    "refined": {
+      "company_ticker": "TSLA",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 5410.0
+    }
+  },
+  "NVDA": {
+    "refined": {
+      "company_ticker": "NVDA",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "AMZN": {
+    "refined": {
+      "company_ticker": "AMZN",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "V": {
+    "refined": {
+      "company_ticker": "V",
+      "fiscal_year": null,
+      "north_america_revenue": 15633.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "GOOGL": {
+    "refined": {
+      "company_ticker": "GOOGL",
+      "fiscal_year": null,
+      "north_america_revenue": 170447.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "META": {
+    "refined": {
+      "company_ticker": "META",
+      "fiscal_year": null,
+      "north_america_revenue": 63207.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "MSFT": {
+    "refined": {
+      "company_ticker": "MSFT",
+      "fiscal_year": 2025,
+      "north_america_revenue": 144546.0,
+      "depreciation_amortization": 1286.0,
+      "lease_liabilities": 69033.0
+    }
+  },
+  "JPM": {
+    "refined": {
+      "company_ticker": "JPM",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  }
+}

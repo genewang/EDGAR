@@ -1,0 +1,92 @@
+{
+  "AAPL": {
+    "html": {
+      "company_ticker": "AAPL",
+      "fiscal_year": null,
+      "north_america_revenue": 178353.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "AMZN": {
+    "html": {
+      "company_ticker": "AMZN",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": 32100.0,
+      "lease_liabilities": null
+    }
+  },
+  "GOOGL": {
+    "html": {
+      "company_ticker": "GOOGL",
+      "fiscal_year": null,
+      "north_america_revenue": 170447.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 14578.0
+    }
+  },
+  "JNJ": {
+    "html": {
+      "company_ticker": "JNJ",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "JPM": {
+    "html": {
+      "company_ticker": "JPM",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "META": {
+    "html": {
+      "company_ticker": "META",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "MSFT": {
+    "html": {
+      "company_ticker": "MSFT",
+      "fiscal_year": 2025,
+      "north_america_revenue": 144546.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  },
+  "NVDA": {
+    "html": {
+      "company_ticker": "NVDA",
+      "fiscal_year": 2025,
+      "north_america_revenue": 61257.0,
+      "depreciation_amortization": 1300.0,
+      "lease_liabilities": null
+    }
+  },
+  "TSLA": {
+    "html": {
+      "company_ticker": "TSLA",
+      "fiscal_year": 2024,
+      "north_america_revenue": 47725.0,
+      "depreciation_amortization": 5368.0,
+      "lease_liabilities": 5745.0
+    }
+  },
+  "V": {
+    "html": {
+      "company_ticker": "V",
+      "fiscal_year": null,
+      "north_america_revenue": 15633.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    }
+  }
+}

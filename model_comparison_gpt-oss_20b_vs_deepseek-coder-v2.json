@@ -1,0 +1,156 @@
+{
+  "model1": "gpt-oss:20b",
+  "model2": "deepseek-coder-v2",
+  "companies": {
+    "AAPL": {
+      "ticker": "AAPL",
+      "model1_values": {
+        "north_america_revenue": 178353.0,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    },
+    "AMZN": {
+      "ticker": "AMZN",
+      "model1_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": 17000.0,
+        "depreciation_amortization": 854.0,
+        "lease_liabilities": 642.0
+      },
+      "matches": 0,
+      "total": 3
+    },
+    "GOOGL": {
+      "ticker": "GOOGL",
+      "model1_values": {
+        "north_america_revenue": 170447.0,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    },
+    "JNJ": {
+      "ticker": "JNJ",
+      "model1_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 0
+    },
+    "JPM": {
+      "ticker": "JPM",
+      "model1_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": 1685.0,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    },
+    "META": {
+      "ticker": "META",
+      "model1_values": {
+        "north_america_revenue": 63207.0,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    },
+    "MSFT": {
+      "ticker": "MSFT",
+      "model1_values": {
+        "north_america_revenue": 144546.0,
+        "depreciation_amortization": 1286.0,
+        "lease_liabilities": 69033.0
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 3
+    },
+    "NVDA": {
+      "ticker": "NVDA",
+      "model1_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 0
+    },
+    "TSLA": {
+      "ticker": "TSLA",
+      "model1_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": 5745.0
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    },
+    "V": {
+      "ticker": "V",
+      "model1_values": {
+        "north_america_revenue": 15633.0,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "model2_values": {
+        "north_america_revenue": null,
+        "depreciation_amortization": null,
+        "lease_liabilities": null
+      },
+      "matches": 0,
+      "total": 1
+    }
+  }
+}

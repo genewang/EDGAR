@@ -1,0 +1,1499 @@
+{
+  "WMT": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/WMT/10-K/0000104169-25-000021/primary-document.html",
+    "metrics": {
+      "company_ticker": "WMT",
+      "fiscal_year": 2025,
+      "north_america_revenue": 557622.0,
+      "depreciation_amortization": 1458.0,
+      "lease_liabilities": 14324.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "TGT": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/TGT/10-K/0000027419-25-000018/primary-document.html",
+    "metrics": {
+      "company_ticker": "TGT",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 3935.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "COST": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/COST/10-K/0000909832-25-000101/primary-document.html",
+    "metrics": {
+      "company_ticker": "COST",
+      "fiscal_year": null,
+      "north_america_revenue": 200.05,
+      "depreciation_amortization": 2.43,
+      "lease_liabilities": 2.67
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "HD": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/HD/10-K/0000354950-25-000085/primary-document.html",
+    "metrics": {
+      "company_ticker": "HD",
+      "fiscal_year": 2024,
+      "north_america_revenue": 153108.0,
+      "depreciation_amortization": 3283.0,
+      "lease_liabilities": 8907.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "INTC": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/INTC/10-K/0000050863-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "INTC",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ORCL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ORCL/10-K/0000950170-25-087926/primary-document.html",
+    "metrics": {
+      "company_ticker": "ORCL",
+      "fiscal_year": null,
+      "north_america_revenue": 36339.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 2957.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "CSCO": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CSCO/10-K/0000858877-25-000111/primary-document.html",
+    "metrics": {
+      "company_ticker": "CSCO",
+      "fiscal_year": null,
+      "north_america_revenue": 33656.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "IBM": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/IBM/10-K/0000051143-25-000015/primary-document.html",
+    "metrics": {
+      "company_ticker": "IBM",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "PG": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/PG/10-K/0000080424-25-000076/primary-document.html",
+    "metrics": {
+      "company_ticker": "PG",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 2847.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "KO": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/KO/10-K/0000021344-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "KO",
+      "fiscal_year": null,
+      "north_america_revenue": 18362.0,
+      "depreciation_amortization": 1852.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "PEP": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/PEP/10-K/0000077476-25-000007/primary-document.html",
+    "metrics": {
+      "company_ticker": "PEP",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 655.0,
+      "lease_liabilities": 3445.0
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": false
+  },
+  "NKE": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/NKE/10-K/0000320187-25-000047/primary-document.html",
+    "metrics": {
+      "company_ticker": "NKE",
+      "fiscal_year": null,
+      "north_america_revenue": 19572.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CAT": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CAT/10-K/0000018230-25-000008/primary-document.html",
+    "metrics": {
+      "company_ticker": "CAT",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "DE": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DE/10-K/0001558370-24-016169/primary-document.html",
+    "metrics": {
+      "company_ticker": "DE",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 375.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "BA": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/BA/10-K/0000012927-25-000015/primary-document.html",
+    "metrics": {
+      "company_ticker": "BA",
+      "fiscal_year": null,
+      "north_america_revenue": 7326.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "MCD": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MCD/10-K/0000063908-25-000012/primary-document.html",
+    "metrics": {
+      "company_ticker": "MCD",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 13524.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "SBUX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/SBUX/10-K/0000829224-25-000114/primary-document.html",
+    "metrics": {
+      "company_ticker": "SBUX",
+      "fiscal_year": null,
+      "north_america_revenue": 27373.1,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "DIS": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/DIS/10-K/0001744489-25-000155/primary-document.html",
+    "metrics": {
+      "company_ticker": "DIS",
+      "fiscal_year": 2025,
+      "north_america_revenue": 61888.0,
+      "depreciation_amortization": 5326.0,
+      "lease_liabilities": 3235.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "NFLX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/NFLX/10-K/0001065280-25-000044/primary-document.html",
+    "metrics": {
+      "company_ticker": "NFLX",
+      "fiscal_year": null,
+      "north_america_revenue": 17359.369,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "XOM": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/XOM/10-K/0000034088-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "XOM",
+      "fiscal_year": null,
+      "north_america_revenue": 138657.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CVX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CVX/10-K/0000093410-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "CVX",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 10737.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "LOW": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/LOW/10-K/0000060667-25-000049/primary-document.html",
+    "metrics": {
+      "company_ticker": "LOW",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 4666.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "BBY": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/BBY/10-K/0000764478-25-000007/primary-document.html",
+    "metrics": {
+      "company_ticker": "BBY",
+      "fiscal_year": null,
+      "north_america_revenue": 38238.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "TJX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/TJX/10-K/0000109198-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "TJX",
+      "fiscal_year": null,
+      "north_america_revenue": 34604.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 9912.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "CMG": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CMG/10-K/0001058090-25-000014/primary-document.html",
+    "metrics": {
+      "company_ticker": "CMG",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 4540.6
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "YUM": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/YUM/10-K/0001041061-25-000013/primary-document.html",
+    "metrics": {
+      "company_ticker": "YUM",
+      "fiscal_year": null,
+      "north_america_revenue": 1825.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "DPZ": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DPZ/10-K/0000950170-25-025223/primary-document.html",
+    "metrics": {
+      "company_ticker": "DPZ",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CL/10-K/0000021665-25-000008/primary-document.html",
+    "metrics": {
+      "company_ticker": "CL",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "KMB": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/KMB/10-K/0000055785-25-000013/primary-document.html",
+    "metrics": {
+      "company_ticker": "KMB",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 505.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "HRL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/HRL/10-K/0000048465-25-000059/primary-document.html",
+    "metrics": {
+      "company_ticker": "HRL",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 263.9,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "F": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/F/10-K/0000037996-25-000013/primary-document.html",
+    "metrics": {
+      "company_ticker": "F",
+      "fiscal_year": null,
+      "north_america_revenue": 116995.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 2340.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "GM": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/GM/10-K/0001467858-25-000032/primary-document.html",
+    "metrics": {
+      "company_ticker": "GM",
+      "fiscal_year": 2024,
+      "north_america_revenue": 154111.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "UPS": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/UPS/10-K/0001090727-25-000019/primary-document.html",
+    "metrics": {
+      "company_ticker": "UPS",
+      "fiscal_year": null,
+      "north_america_revenue": 70389.0,
+      "depreciation_amortization": 2290.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "FDX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/FDX/10-K/0001048911-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "FDX",
+      "fiscal_year": null,
+      "north_america_revenue": 62916.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "LMT": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/LMT/10-K/0000936468-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "LMT",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "RTX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/RTX/10-K/0000101829-25-000005/primary-document.html",
+    "metrics": {
+      "company_ticker": "RTX",
+      "fiscal_year": null,
+      "north_america_revenue": 67701.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ROST": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ROST/10-K/0000745732-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "ROST",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 446.788,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "DG": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DG/10-K/0001558370-25-003413/primary-document.html",
+    "metrics": {
+      "company_ticker": "DG",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 13761.782
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "DLTR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DLTR/10-K/0000935703-25-000015/primary-document.html",
+    "metrics": {
+      "company_ticker": "DLTR",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "KR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/KR/10-K/0001558370-25-004267/primary-document.html",
+    "metrics": {
+      "company_ticker": "KR",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 9173.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "WBA": {
+    "status": "no_file"
+  },
+  "DIN": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DIN/10-K/0001628280-25-010259/primary-document.html",
+    "metrics": {
+      "company_ticker": "DIN",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 104.3
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "WEN": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/WEN/10-K/0000030697-25-000003/primary-document.html",
+    "metrics": {
+      "company_ticker": "WEN",
+      "fiscal_year": 2024,
+      "north_america_revenue": 2056.329,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "QSR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/QSR/10-K/0001618756-25-000087/primary-document.html",
+    "metrics": {
+      "company_ticker": "QSR",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ANF": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ANF/10-K/0001018840-25-000013/primary-document.html",
+    "metrics": {
+      "company_ticker": "ANF",
+      "fiscal_year": null,
+      "north_america_revenue": 4027.5,
+      "depreciation_amortization": 118.3,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "GPS": {
+    "status": "no_file"
+  },
+  "ULTA": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ULTA/10-K/0001558370-25-003810/primary-document.html",
+    "metrics": {
+      "company_ticker": "ULTA",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 267.042,
+      "lease_liabilities": 1923.234
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": false
+  },
+  "BGS": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/BGS/10-K/0001558370-25-001513/primary-document.html",
+    "metrics": {
+      "company_ticker": "BGS",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 56.386
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "MA": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MA/10-K/0001141391-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "MA",
+      "fiscal_year": 2024,
+      "north_america_revenue": 12375.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "PYPL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/PYPL/10-K/0001633917-25-000019/primary-document.html",
+    "metrics": {
+      "company_ticker": "PYPL",
+      "fiscal_year": null,
+      "north_america_revenue": 18267.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 764.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "SQ": {
+    "status": "no_file"
+  },
+  "FIS": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/FIS/10-K/0001136893-25-000014/primary-document.html",
+    "metrics": {
+      "company_ticker": "FIS",
+      "fiscal_year": null,
+      "north_america_revenue": 7849.0,
+      "depreciation_amortization": 175.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "FISV": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/FISV/10-K/0000798354-25-000047/primary-document.html",
+    "metrics": {
+      "company_ticker": "FISV",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ADP": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/ADP/10-K/0000008670-25-000037/primary-document.html",
+    "metrics": {
+      "company_ticker": "ADP",
+      "fiscal_year": null,
+      "north_america_revenue": 18179.2,
+      "depreciation_amortization": 582.4,
+      "lease_liabilities": 422.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "INTU": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/INTU/10-K/0000896878-25-000035/primary-document.html",
+    "metrics": {
+      "company_ticker": "INTU",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "BKNG": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/BKNG/10-K/0001075531-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "BKNG",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "EXPE": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EXPE/10-K/0001324424-25-000008/primary-document.html",
+    "metrics": {
+      "company_ticker": "EXPE",
+      "fiscal_year": 2023,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "COIN": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/COIN/10-K/0001679788-25-000022/primary-document.html",
+    "metrics": {
+      "company_ticker": "COIN",
+      "fiscal_year": null,
+      "north_america_revenue": 5460.82,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "HOOD": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/HOOD/10-K/0001783879-25-000049/primary-document.html",
+    "metrics": {
+      "company_ticker": "HOOD",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "SOFI": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/SOFI/10-K/0001818874-25-000016/primary-document.html",
+    "metrics": {
+      "company_ticker": "SOFI",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "AXP": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/AXP/10-K/0000004962-25-000016/primary-document.html",
+    "metrics": {
+      "company_ticker": "AXP",
+      "fiscal_year": null,
+      "north_america_revenue": 51471.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "DFS": {
+    "status": "no_file"
+  },
+  "MSCI": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MSCI/10-K/0001408198-25-000053/primary-document.html",
+    "metrics": {
+      "company_ticker": "MSCI",
+      "fiscal_year": null,
+      "north_america_revenue": 1169.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "SPGI": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/SPGI/10-K/0000064040-25-000052/primary-document.html",
+    "metrics": {
+      "company_ticker": "SPGI",
+      "fiscal_year": 2024,
+      "north_america_revenue": 8640.0,
+      "depreciation_amortization": 1160.0,
+      "lease_liabilities": 644.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "MCO": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MCO/10-K/0001059556-25-000025/primary-document.html",
+    "metrics": {
+      "company_ticker": "MCO",
+      "fiscal_year": 2024,
+      "north_america_revenue": 1390.0,
+      "depreciation_amortization": 353.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "NU": {
+    "status": "no_file"
+  },
+  "LC": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/LC/10-K/0001409970-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "LC",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "L": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/L/10-K/0000060086-25-000036/primary-document.html",
+    "metrics": {
+      "company_ticker": "L",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "RLI": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/RLI/10-K/0001558370-25-001301/primary-document.html",
+    "metrics": {
+      "company_ticker": "RLI",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 15.711
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "INFO": {
+    "status": "no_file"
+  },
+  "TRU": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/TRU/10-K/0001552033-25-000015/primary-document.html",
+    "metrics": {
+      "company_ticker": "TRU",
+      "fiscal_year": null,
+      "north_america_revenue": 3237.9,
+      "depreciation_amortization": 718.0,
+      "lease_liabilities": 41.5
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "EFX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EFX/10-K/0000033185-25-000025/primary-document.html",
+    "metrics": {
+      "company_ticker": "EFX",
+      "fiscal_year": null,
+      "north_america_revenue": 1893.0,
+      "depreciation_amortization": 669.8,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "CLVT": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CLVT/10-K/0001764046-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "CLVT",
+      "fiscal_year": null,
+      "north_america_revenue": 1381.4,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "RPD": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/RPD/10-K/0001560327-25-000021/primary-document.html",
+    "metrics": {
+      "company_ticker": "RPD",
+      "fiscal_year": null,
+      "north_america_revenue": 643.405,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "QLYS": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/QLYS/10-K/0001107843-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "QLYS",
+      "fiscal_year": null,
+      "north_america_revenue": 354.584,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ACN": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ACN/10-K/0001467373-25-000217/primary-document.html",
+    "metrics": {
+      "company_ticker": "ACN",
+      "fiscal_year": null,
+      "north_america_revenue": 35100.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CTSH": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CTSH/10-K/0001058290-25-000017/primary-document.html",
+    "metrics": {
+      "company_ticker": "CTSH",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 572.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "GIB": {
+    "status": "no_file"
+  },
+  "DOCU": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DOCU/10-K/0001261333-25-000024/primary-document.html",
+    "metrics": {
+      "company_ticker": "DOCU",
+      "fiscal_year": 2025,
+      "north_america_revenue": null,
+      "depreciation_amortization": 107.8,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "RGP": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/RGP/10-K/0001084765-25-000115/primary-document.html",
+    "metrics": {
+      "company_ticker": "RGP",
+      "fiscal_year": null,
+      "north_america_revenue": 467.2,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "KFY": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/KFY/10-K/0001628280-25-033260/primary-document.html",
+    "metrics": {
+      "company_ticker": "KFY",
+      "fiscal_year": 2025,
+      "north_america_revenue": 535.921,
+      "depreciation_amortization": 80.287,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "COP": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/COP/10-K/0001163165-25-000012/primary-document.html",
+    "metrics": {
+      "company_ticker": "COP",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 9599.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "SLB": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/SLB/10-K/0000950170-25-007638/primary-document.html",
+    "metrics": {
+      "company_ticker": "SLB",
+      "fiscal_year": null,
+      "north_america_revenue": 6680.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "HAL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/HAL/10-K/0000045012-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "HAL",
+      "fiscal_year": 2024,
+      "north_america_revenue": 9626.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 1061.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "EOG": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EOG/10-K/0000821189-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "EOG",
+      "fiscal_year": null,
+      "north_america_revenue": 23387.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": 1190.0
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "MPC": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MPC/10-K/0001510295-25-000012/primary-document.html",
+    "metrics": {
+      "company_ticker": "MPC",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 2001.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "NEE": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/NEE/10-K/0000753308-25-000011/primary-document.html",
+    "metrics": {
+      "company_ticker": "NEE",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 2827.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "DUK": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/DUK/10-K/0001326160-25-000072/primary-document.html",
+    "metrics": {
+      "company_ticker": "DUK",
+      "fiscal_year": null,
+      "north_america_revenue": 7857.0,
+      "depreciation_amortization": 1593.0,
+      "lease_liabilities": 1165.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "SO": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/SO/10-K/0000092122-25-000018/primary-document.html",
+    "metrics": {
+      "company_ticker": "SO",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": 1459.0,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "AEP": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/AEP/10-K/0000004904-25-000027/primary-document.html",
+    "metrics": {
+      "company_ticker": "AEP",
+      "fiscal_year": null,
+      "north_america_revenue": 18173.4,
+      "depreciation_amortization": 3202.8,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": false,
+    "complete": false
+  },
+  "EXC": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EXC/10-K/0001109357-25-000043/primary-document.html",
+    "metrics": {
+      "company_ticker": "EXC",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CBRE": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/CBRE/10-K/0001138118-25-000005/primary-document.html",
+    "metrics": {
+      "company_ticker": "CBRE",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 1672.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "JLL": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/JLL/10-K/0001037976-25-000006/primary-document.html",
+    "metrics": {
+      "company_ticker": "JLL",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "CUSH": {
+    "status": "no_file"
+  },
+  "EMR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EMR/10-K/0000032604-25-000087/primary-document.html",
+    "metrics": {
+      "company_ticker": "EMR",
+      "fiscal_year": null,
+      "north_america_revenue": 7481.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "ETN": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ETN/10-K/0001551182-25-000006/primary-document.html",
+    "metrics": {
+      "company_ticker": "ETN",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 860.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "PH": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/PH/10-K/0000076334-25-000035/primary-document.html",
+    "metrics": {
+      "company_ticker": "PH",
+      "fiscal_year": 2025,
+      "north_america_revenue": 13406.0,
+      "depreciation_amortization": 907.0,
+      "lease_liabilities": 201.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "EQIX": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/EQIX/10-K/0001628280-25-005126/primary-document.html",
+    "metrics": {
+      "company_ticker": "EQIX",
+      "fiscal_year": null,
+      "north_america_revenue": 3300.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "DLR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/DLR/10-K/0001558370-25-001424/primary-document.html",
+    "metrics": {
+      "company_ticker": "DLR",
+      "fiscal_year": null,
+      "north_america_revenue": 2910.5,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "AMT": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/AMT/10-K/0001053507-25-000025/primary-document.html",
+    "metrics": {
+      "company_ticker": "AMT",
+      "fiscal_year": 2024,
+      "north_america_revenue": 6353.3,
+      "depreciation_amortization": 1566.0,
+      "lease_liabilities": 917.4
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  },
+  "TCOM": {
+    "status": "no_file"
+  },
+  "ABNB": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/ABNB/10-K/0001559720-25-000010/primary-document.html",
+    "metrics": {
+      "company_ticker": "ABNB",
+      "fiscal_year": null,
+      "north_america_revenue": 4640.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "MAR": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/MAR/10-K/0001628280-25-004818/primary-document.html",
+    "metrics": {
+      "company_ticker": "MAR",
+      "fiscal_year": null,
+      "north_america_revenue": 18612.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "HLT": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/HLT/10-K/0001585689-25-000008/primary-document.html",
+    "metrics": {
+      "company_ticker": "HLT",
+      "fiscal_year": 2024,
+      "north_america_revenue": null,
+      "depreciation_amortization": 55.0,
+      "lease_liabilities": 852.0
+    },
+    "has_revenue": false,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": false
+  },
+  "H": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/H/10-K/0001468174-25-000009/primary-document.html",
+    "metrics": {
+      "company_ticker": "H",
+      "fiscal_year": 2024,
+      "north_america_revenue": 5036.0,
+      "depreciation_amortization": null,
+      "lease_liabilities": null
+    },
+    "has_revenue": true,
+    "has_depreciation": false,
+    "has_lease": false,
+    "complete": false
+  },
+  "WH": {
+    "status": "partial",
+    "html_file": "sec-edgar-filings/WH/10-K/0001722684-25-000005/primary-document.html",
+    "metrics": {
+      "company_ticker": "WH",
+      "fiscal_year": null,
+      "north_america_revenue": null,
+      "depreciation_amortization": null,
+      "lease_liabilities": 9.0
+    },
+    "has_revenue": false,
+    "has_depreciation": false,
+    "has_lease": true,
+    "complete": false
+  },
+  "APEI": {
+    "status": "complete",
+    "html_file": "sec-edgar-filings/APEI/10-K/0001201792-25-000004/primary-document.html",
+    "metrics": {
+      "company_ticker": "APEI",
+      "fiscal_year": 2024,
+      "north_america_revenue": 317.049,
+      "depreciation_amortization": 19.3,
+      "lease_liabilities": 70.0
+    },
+    "has_revenue": true,
+    "has_depreciation": true,
+    "has_lease": true,
+    "complete": true
+  }
+}

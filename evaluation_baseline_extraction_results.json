@@ -1,0 +1,262 @@
+{
+  "JNJ": {
+    "baseline": {
+      "ticker": "JNJ",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "AAPL": {
+    "baseline": {
+      "ticker": "AAPL",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": 178353.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "TSLA": {
+    "baseline": {
+      "ticker": "TSLA",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": 5745.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "NVDA": {
+    "baseline": {
+      "ticker": "NVDA",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": 2086.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "AMZN": {
+    "baseline": {
+      "ticker": "AMZN",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "V": {
+    "baseline": {
+      "ticker": "V",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": 15633.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "GOOGL": {
+    "baseline": {
+      "ticker": "GOOGL",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": 170447.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "META": {
+    "baseline": {
+      "ticker": "META",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": 63207.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "MSFT": {
+    "baseline": {
+      "ticker": "MSFT",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": 144546.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": 1286.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": 63609.0,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  },
+  "JPM": {
+    "baseline": {
+      "ticker": "JPM",
+      "metrics": {
+        "north_america_revenue": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "depreciation_amortization": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        },
+        "lease_liabilities": {
+          "extracted": null,
+          "ground_truth": null,
+          "match": null,
+          "error": "No ground truth available"
+        }
+      },
+      "accuracy": 0.0
+    }
+  }
+}

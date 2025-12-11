@@ -1,0 +1,52 @@
+{
+  "JNJ": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "AAPL": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "TSLA": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "NVDA": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "AMZN": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "V": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "GOOGL": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "META": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "MSFT": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  },
+  "JPM": {
+    "baseline": {
+      "error": "OpenAI API key required for embeddings when Ollama embeddings unavailable"
+    }
+  }
+}

@@ -9,6 +9,7 @@ This script implements both baseline (naive text chunking) and refined
 import os
 import sys
 import json
+import logging
 from pathlib import Path
 from typing import Optional, Dict, Any
 from datetime import datetime
@@ -20,12 +21,47 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('ollama_debug.log')
+    ]
+)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 # LlamaIndex imports
 from llama_index.core import VectorStoreIndex, Settings, Document
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.retrievers import VectorIndexRetriever
+from llama_index.core.embeddings import BaseEmbedding
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
+
+# Ollama support (optional)
+try:
+    from llama_index.llms.ollama import Ollama
+    import requests
+    try:
+        import ollama
+        OLLAMA_PYTHON_AVAILABLE = True
+    except ImportError:
+        OLLAMA_PYTHON_AVAILABLE = False
+    OLLAMA_AVAILABLE = True
+    # Try to import Ollama embeddings (may not be available)
+    try:
+        from llama_index.embeddings.ollama import OllamaEmbedding
+        OLLAMA_EMBEDDINGS_AVAILABLE = True
+    except ImportError:
+        OLLAMA_EMBEDDINGS_AVAILABLE = False
+        # We'll create a custom embedding class using Ollama API
+except ImportError:
+    OLLAMA_AVAILABLE = False
+    OLLAMA_EMBEDDINGS_AVAILABLE = False
+    print("Warning: llama-index-llms-ollama not available. Install with: pip install llama-index-llms-ollama")
 
 # LlamaParse for advanced PDF parsing
 try:
@@ -42,6 +78,14 @@ try:
 except ImportError:
     PYPDF_AVAILABLE = False
     print("Warning: pypdf not available. Install with: pip install pypdf")
+
+# BeautifulSoup for HTML parsing
+try:
+    from bs4 import BeautifulSoup
+    HTML_PARSING_AVAILABLE = True
+except ImportError:
+    HTML_PARSING_AVAILABLE = False
+    print("Warning: beautifulsoup4 not available. Install with: pip install beautifulsoup4 lxml")
 
 
 # ============================================================================
@@ -99,16 +143,239 @@ class FinancialMetrics(BaseModel):
 
 
 # ============================================================================
+# Custom Ollama Embedding Class
+# ============================================================================
+
+class OllamaEmbeddingCustom(BaseEmbedding):
+    """Custom embedding class that uses Ollama's embedding API directly."""
+    
+    model_name: str = "nomic-embed-text"
+    base_url: str = "http://localhost:11434"
+    
+    def __init__(self, model_name: str = "nomic-embed-text", base_url: str = "http://localhost:11434", **kwargs):
+        super().__init__(model_name=model_name, base_url=base_url.rstrip('/'), **kwargs)
+        self._embed_dim = None
+    
+    def _get_query_embedding(self, query: str) -> list:
+        """Get embedding for a query."""
+        return self._get_text_embedding(query)
+    
+    async def _aget_query_embedding(self, query: str) -> list:
+        """Get embedding for a query (async)."""
+        return await self._aget_text_embedding(query)
+    
+    def _get_text_embedding(self, text: str) -> list:
+        """Get embedding for a single text."""
+        logger.debug(f"Getting embedding for text (length: {len(text)}) using model: {self.model_name}")
+        
+        # Try using ollama Python library first (more reliable)
+        if OLLAMA_PYTHON_AVAILABLE:
+            try:
+                logger.debug(f"Using ollama Python library for embeddings")
+                result = ollama.embeddings(model=self.model_name, prompt=text)
+                embedding = result.get("embedding", [])
+                logger.debug(f"Got embedding of dimension: {len(embedding)}")
+                if self._embed_dim is None:
+                    self._embed_dim = len(embedding)
+                    logger.info(f"Embedding dimension set to: {self._embed_dim}")
+                return embedding
+            except Exception as e:
+                logger.warning(f"Ollama Python library failed: {e}, falling back to HTTP requests")
+                # Fall back to HTTP requests
+                pass
+        
+        # Fall back to HTTP requests
+        logger.debug("Using HTTP requests for embeddings")
+        try:
+            # Try OpenAI-compatible endpoint
+            logger.debug(f"Trying OpenAI-compatible endpoint: {self.base_url}/v1/embeddings")
+            response = requests.post(
+                f"{self.base_url}/v1/embeddings",
+                json={"model": self.model_name, "input": text},
+                timeout=30
+            )
+            logger.debug(f"Response status: {response.status_code}")
+            response.raise_for_status()
+            result = response.json()
+            embedding = result.get("data", [{}])[0].get("embedding", [])
+            logger.debug(f"Got embedding of dimension: {len(embedding)} from OpenAI-compatible endpoint")
+        except Exception as e:
+            logger.warning(f"OpenAI-compatible endpoint failed: {e}, trying native endpoint")
+            # Try native Ollama endpoint
+            try:
+                logger.debug(f"Trying native Ollama endpoint: {self.base_url}/api/embeddings")
+                response = requests.post(
+                    f"{self.base_url}/api/embeddings",
+                    json={"model": self.model_name, "prompt": text},
+                    timeout=30
+                )
+                logger.debug(f"Response status: {response.status_code}")
+                response.raise_for_status()
+                result = response.json()
+                embedding = result.get("embedding", [])
+                logger.debug(f"Got embedding of dimension: {len(embedding)} from native endpoint")
+            except Exception as e2:
+                logger.error(f"All embedding endpoints failed. Last error: {e2}", exc_info=True)
+                raise
+        
+        if self._embed_dim is None:
+            self._embed_dim = len(embedding)
+            logger.info(f"Embedding dimension set to: {self._embed_dim}")
+        return embedding
+    
+    async def _aget_text_embedding(self, text: str) -> list:
+        """Get embedding for a single text (async)."""
+        # For simplicity, use sync version (can be improved with aiohttp)
+        return self._get_text_embedding(text)
+    
+    def _get_text_embeddings(self, texts: list) -> list:
+        """Get embeddings for multiple texts."""
+        return [self._get_text_embedding(text) for text in texts]
+    
+    async def _aget_text_embeddings(self, texts: list) -> list:
+        """Get embeddings for multiple texts (async)."""
+        return [await self._aget_text_embedding(text) for text in texts]
+    
+    @property
+    def embed_dim(self) -> int:
+        """Get the embedding dimension."""
+        if self._embed_dim is None:
+            # Initialize by getting an embedding for a dummy text
+            self._get_text_embedding("test")
+        return self._embed_dim
+
+
+# ============================================================================
+# Model Configuration Helper
+# ============================================================================
+
+def _initialize_models(use_ollama: bool = False, ollama_model: str = "gpt-oss:20b", 
+                       ollama_base_url: str = "http://localhost:11434",
+                       openai_api_key: Optional[str] = None):
+    """
+    Initialize LLM and embedding models based on configuration.
+    
+    Args:
+        use_ollama: If True, use local Ollama server; if False, use OpenAI
+        ollama_model: Model name for Ollama (default: "gpt-oss:20b")
+        ollama_base_url: Base URL for Ollama server (default: "http://localhost:11434")
+        openai_api_key: OpenAI API key (required if use_ollama=False)
+    
+    Returns:
+        Tuple of (llm, embed_model)
+    """
+    if use_ollama:
+        if not OLLAMA_AVAILABLE:
+            raise ImportError(
+                "Ollama support requested but llama-index-llms-ollama is not installed. "
+                "Install with: pip install llama-index-llms-ollama"
+            )
+        
+        logger.info(f"Initializing Ollama LLM: model={ollama_model}, base_url={ollama_base_url}")
+        print(f"  [Config] Using Ollama model: {ollama_model} at {ollama_base_url}")
+        
+        # Check Ollama server status
+        try:
+            if OLLAMA_PYTHON_AVAILABLE:
+                logger.debug("Checking Ollama server status using Python library...")
+                models = ollama.list()
+                logger.debug(f"Available Ollama models: {[m['name'] for m in models.get('models', [])]}")
+                if not any(m['name'] == ollama_model for m in models.get('models', [])):
+                    logger.warning(f"Model {ollama_model} not found in Ollama. Available models: {[m['name'] for m in models.get('models', [])]}")
+        except Exception as e:
+            logger.warning(f"Could not check Ollama models: {e}")
+        
+        # Check system memory
+        try:
+            import psutil
+            mem = psutil.virtual_memory()
+            logger.info(f"System memory - Total: {mem.total / (1024**3):.2f} GB, Available: {mem.available / (1024**3):.2f} GB, Used: {mem.used / (1024**3):.2f} GB")
+            print(f"  [Debug] System memory - Available: {mem.available / (1024**3):.2f} GB / Total: {mem.total / (1024**3):.2f} GB")
+        except ImportError:
+            logger.warning("psutil not available for memory checking. Install with: pip install psutil")
+        except Exception as e:
+            logger.warning(f"Could not check system memory: {e}")
+        
+        logger.debug(f"Creating Ollama LLM instance with timeout=120.0, temperature=0.1")
+        llm = Ollama(
+            model=ollama_model,
+            base_url=ollama_base_url,
+            temperature=0.1,
+            request_timeout=120.0  # Longer timeout for local models
+        )
+        logger.debug("Ollama LLM instance created successfully")
+        # Use Ollama embeddings - try official package first, then custom implementation
+        embed_model = None
+        if OLLAMA_EMBEDDINGS_AVAILABLE:
+            try:
+                embed_model = OllamaEmbedding(
+                    model_name=ollama_model,
+                    base_url=ollama_base_url
+                )
+                print(f"  [Config] Using Ollama embeddings (official): {ollama_model}")
+            except Exception as e:
+                print(f"  [Config] Warning: Could not initialize official Ollama embeddings: {e}")
+                embed_model = None
+        
+        # Fall back to custom Ollama embedding implementation
+        if embed_model is None:
+            try:
+                logger.debug("Initializing custom Ollama embeddings with nomic-embed-text")
+                # Try using nomic-embed-text (common embedding model)
+                embed_model = OllamaEmbeddingCustom(
+                    model_name="nomic-embed-text",
+                    base_url=ollama_base_url
+                )
+                logger.info("Custom Ollama embeddings initialized successfully")
+                print(f"  [Config] Using Ollama embeddings (custom): nomic-embed-text")
+            except Exception as e:
+                logger.error(f"Failed to initialize Ollama embeddings: {e}", exc_info=True)
+                print(f"  [Config] Warning: Could not initialize Ollama embeddings: {e}")
+                print(f"  [Config] Falling back to OpenAI embeddings")
+                if not openai_api_key:
+                    raise ValueError(
+                        "OpenAI API key required for embeddings when Ollama embeddings unavailable. "
+                        "Make sure Ollama server is running and 'nomic-embed-text' model is available: "
+                        "ollama pull nomic-embed-text"
+                    )
+                logger.info("Falling back to OpenAI embeddings")
+                embed_model = OpenAIEmbedding(api_key=openai_api_key)
+    else:
+        if not openai_api_key:
+            raise ValueError("OpenAI API key required when not using Ollama")
+        print(f"  [Config] Using OpenAI model: gpt-4o")
+        llm = OpenAI(api_key=openai_api_key, model="gpt-4o", temperature=0)
+        embed_model = OpenAIEmbedding(api_key=openai_api_key)
+    
+    return llm, embed_model
+
+
+# ============================================================================
 # Baseline Extraction (Naive Text Chunking)
 # ============================================================================
 
 class BaselineExtractor:
     """Baseline extraction using simple text chunking - expects low accuracy on tables."""
     
-    def __init__(self, openai_api_key: str):
-        """Initialize the baseline extractor."""
-        self.llm = OpenAI(api_key=openai_api_key, model="gpt-4o", temperature=0)
-        self.embed_model = OpenAIEmbedding(api_key=openai_api_key)
+    def __init__(self, openai_api_key: Optional[str] = None, 
+                 use_ollama: bool = False,
+                 ollama_model: str = "gpt-oss:20b",
+                 ollama_base_url: str = "http://localhost:11434"):
+        """
+        Initialize the baseline extractor.
+        
+        Args:
+            openai_api_key: OpenAI API key (required if use_ollama=False)
+            use_ollama: If True, use local Ollama server instead of OpenAI
+            ollama_model: Model name for Ollama (default: "gpt-oss:20b")
+            ollama_base_url: Base URL for Ollama server (default: "http://localhost:11434")
+        """
+        self.llm, self.embed_model = _initialize_models(
+            use_ollama=use_ollama,
+            ollama_model=ollama_model,
+            ollama_base_url=ollama_base_url,
+            openai_api_key=openai_api_key
+        )
         Settings.llm = self.llm
         Settings.embed_model = self.embed_model
     
@@ -124,12 +391,67 @@ class BaselineExtractor:
                 text += page.extract_text() + "\n"
         return text
     
-    def extract(self, pdf_path: Path, ticker: str) -> FinancialMetrics:
-        """Extract financial metrics using baseline approach."""
-        print(f"  [Baseline] Extracting text from PDF...")
+    def extract_text_from_html(self, html_path: Path) -> str:
+        """Extract text from HTML file, preserving table structure."""
+        if not HTML_PARSING_AVAILABLE:
+            raise ImportError("beautifulsoup4 is required for HTML extraction")
         
-        # Extract raw text
-        text = self.extract_text_from_pdf(pdf_path)
+        logger.debug(f"Extracting text from HTML: {html_path}")
+        
+        with open(html_path, 'r', encoding='utf-8', errors='ignore') as file:
+            html_content = file.read()
+        
+        soup = BeautifulSoup(html_content, 'lxml')
+        
+        # Remove script and style elements
+        for script in soup(["script", "style"]):
+            script.decompose()
+        
+        # Extract text, preserving table structure
+        text_parts = []
+        
+        # Process tables separately to preserve structure
+        for table in soup.find_all('table'):
+            table_text = []
+            for row in table.find_all('tr'):
+                cells = []
+                for cell in row.find_all(['td', 'th']):
+                    cell_text = cell.get_text(strip=True, separator=' ')
+                    cells.append(cell_text)
+                if cells:
+                    table_text.append(' | '.join(cells))
+            if table_text:
+                text_parts.append('\n'.join(table_text))
+                text_parts.append('\n')  # Separator between tables
+        
+        # Extract non-table text
+        for element in soup.find_all(['p', 'div', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+            if element.name != 'table' and element.find_parent('table') is None:
+                text = element.get_text(strip=True, separator=' ')
+                if text:
+                    text_parts.append(text)
+        
+        # Fallback: get all text if no structured extraction worked
+        if not text_parts:
+            text_parts.append(soup.get_text(separator=' ', strip=True))
+        
+        return '\n'.join(text_parts)
+    
+    def extract(self, file_path: Path, ticker: str, file_type: str = "pdf") -> FinancialMetrics:
+        """
+        Extract financial metrics using baseline approach.
+        
+        Args:
+            file_path: Path to PDF or HTML file
+            ticker: Company ticker symbol
+            file_type: "pdf" or "html"
+        """
+        if file_type.lower() == "html":
+            print(f"  [Baseline] Extracting text from HTML...")
+            text = self.extract_text_from_html(file_path)
+        else:
+            print(f"  [Baseline] Extracting text from PDF...")
+            text = self.extract_text_from_pdf(file_path)
         
         # Create documents with chunking
         documents = [Document(text=chunk) for chunk in self._chunk_text(text, chunk_size=1024)]
@@ -139,10 +461,12 @@ class BaselineExtractor:
         index = VectorStoreIndex.from_documents(documents)
         
         # Create query engine
+        logger.debug("Creating query engine with output_cls=FinancialMetrics, similarity_top_k=5")
         query_engine = index.as_query_engine(
             output_cls=FinancialMetrics,
             similarity_top_k=5
         )
+        logger.debug("Query engine created successfully")
         
         # Extract metrics
         print(f"  [Baseline] Querying LLM for financial metrics...")
@@ -155,7 +479,27 @@ class BaselineExtractor:
         Return the values in millions of USD. If a value cannot be found, set it to None.
         """
         
-        response = query_engine.query(query)
+        logger.info(f"Querying LLM with query length: {len(query)}")
+        logger.debug(f"Query content: {query[:200]}...")
+        try:
+            logger.debug("Calling query_engine.query()...")
+            response = query_engine.query(query)
+            logger.info("LLM query completed successfully")
+            logger.debug(f"Response type: {type(response)}")
+        except Exception as e:
+            logger.error(f"LLM query failed: {e}", exc_info=True)
+            # Check if it's a memory issue
+            error_str = str(e).lower()
+            if "memory" in error_str or "14.8" in error_str:
+                logger.error("Memory error detected. Checking current memory status...")
+                try:
+                    import psutil
+                    mem = psutil.virtual_memory()
+                    logger.error(f"Current memory - Available: {mem.available / (1024**3):.2f} GB, Used: {mem.used / (1024**3):.2f} GB")
+                    logger.error(f"Memory percent used: {mem.percent}%")
+                except:
+                    pass
+            raise
         
         # Parse response - LlamaIndex with output_cls returns the Pydantic model directly
         if isinstance(response, FinancialMetrics):
@@ -218,12 +562,34 @@ class BaselineExtractor:
 class RefinedExtractor:
     """Refined extraction using LlamaParse for table-preserving Markdown parsing."""
     
-    def __init__(self, openai_api_key: str, llama_cloud_api_key: Optional[str] = None):
-        """Initialize the refined extractor."""
-        self.llm = OpenAI(api_key=openai_api_key, model="gpt-4o", temperature=0)
-        self.embed_model = OpenAIEmbedding(api_key=openai_api_key)
+    def __init__(self, openai_api_key: Optional[str] = None, 
+                 llama_cloud_api_key: Optional[str] = None,
+                 use_ollama: bool = False,
+                 ollama_model: str = "gpt-oss:20b",
+                 ollama_base_url: str = "http://localhost:11434"):
+        """
+        Initialize the refined extractor.
+        
+        Args:
+            openai_api_key: OpenAI API key (required if use_ollama=False)
+            llama_cloud_api_key: LlamaCloud API key for LlamaParse
+            use_ollama: If True, use local Ollama server instead of OpenAI
+            ollama_model: Model name for Ollama (default: "gpt-oss:20b")
+            ollama_base_url: Base URL for Ollama server (default: "http://localhost:11434")
+        """
+        self.llm, self.embed_model = _initialize_models(
+            use_ollama=use_ollama,
+            ollama_model=ollama_model,
+            ollama_base_url=ollama_base_url,
+            openai_api_key=openai_api_key
+        )
         Settings.llm = self.llm
         Settings.embed_model = self.embed_model
+        
+        # Store configuration for fallback
+        self._use_ollama = use_ollama
+        self._ollama_model = ollama_model
+        self._ollama_base_url = ollama_base_url
         
         # Initialize LlamaParse if available
         if LLAMA_PARSE_AVAILABLE and llama_cloud_api_key:
@@ -245,7 +611,14 @@ class RefinedExtractor:
         
         if not self.parser:
             print("  [Refined] Falling back to baseline text extraction (LlamaParse not available)")
-            baseline = BaselineExtractor(os.getenv("OPENAI_API_KEY"))
+            # Use the same configuration as this extractor
+            use_ollama = hasattr(self, '_use_ollama') and self._use_ollama
+            baseline = BaselineExtractor(
+                openai_api_key=os.getenv("OPENAI_API_KEY") if not use_ollama else None,
+                use_ollama=use_ollama,
+                ollama_model=getattr(self, '_ollama_model', "gpt-oss:20b"),
+                ollama_base_url=getattr(self, '_ollama_base_url', "http://localhost:11434")
+            )
             return baseline.extract(pdf_path, ticker)
         
         # Parse PDF to Markdown (preserves tables!)
@@ -454,15 +827,38 @@ def main():
                        help='Output file for extraction results')
     parser.add_argument('--evaluate', action='store_true',
                        help='Evaluate results against ground truth')
+    parser.add_argument('--use-ollama', action='store_true',
+                       help='Use local Ollama server instead of OpenAI')
+    parser.add_argument('--ollama-model', type=str, default='gpt-oss:20b',
+                       help='Ollama model name (default: gpt-oss:20b)')
+    parser.add_argument('--ollama-base-url', type=str, default='http://localhost:11434',
+                       help='Ollama server base URL (default: http://localhost:11434)')
     
     args = parser.parse_args()
     
-    # Check for API keys
+    # Check for API keys and configuration
+    use_ollama = args.use_ollama or os.getenv("USE_OLLAMA", "").lower() in ("true", "1", "yes")
+    ollama_model = args.ollama_model or os.getenv("OLLAMA_MODEL", "gpt-oss:20b")
+    ollama_base_url = args.ollama_base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    
     openai_key = os.getenv("OPENAI_API_KEY")
-    if not openai_key:
-        print("Error: OPENAI_API_KEY not found in environment variables.")
-        print("Please set it in a .env file or export it.")
-        sys.exit(1)
+    if not use_ollama:
+        if not openai_key:
+            print("Error: OPENAI_API_KEY not found in environment variables.")
+            print("Please set it in a .env file or export it.")
+            print("Alternatively, use --use-ollama to use a local Ollama server.")
+            sys.exit(1)
+    else:
+        if not OLLAMA_AVAILABLE:
+            print("Error: Ollama support requested but llama-index-llms-ollama is not installed.")
+            print("Install with: pip install llama-index-llms-ollama")
+            sys.exit(1)
+        print(f"Using Ollama configuration:")
+        print(f"  Model: {ollama_model}")
+        print(f"  Base URL: {ollama_base_url}")
+        # OpenAI key may still be needed for embeddings if Ollama embeddings fail
+        if not openai_key:
+            print("Warning: OPENAI_API_KEY not set. Embeddings may fall back to OpenAI if Ollama embeddings fail.")
     
     llama_key = os.getenv("LLAMA_CLOUD_API_KEY")
     if args.mode in ['refined', 'both'] and not llama_key:
@@ -493,7 +889,12 @@ def main():
         if args.mode in ['baseline', 'both']:
             try:
                 print(f"  Running baseline extraction...")
-                baseline_extractor = BaselineExtractor(openai_key)
+                baseline_extractor = BaselineExtractor(
+                    openai_api_key=openai_key if not use_ollama else None,
+                    use_ollama=use_ollama,
+                    ollama_model=ollama_model,
+                    ollama_base_url=ollama_base_url
+                )
                 baseline_result = baseline_extractor.extract(pdf_path, ticker)
                 results[ticker]['baseline'] = baseline_result.model_dump()
                 print(f"  ✓ Baseline extraction complete")
@@ -505,7 +906,13 @@ def main():
         if args.mode in ['refined', 'both']:
             try:
                 print(f"  Running refined extraction...")
-                refined_extractor = RefinedExtractor(openai_key, llama_key)
+                refined_extractor = RefinedExtractor(
+                    openai_api_key=openai_key if not use_ollama else None,
+                    llama_cloud_api_key=llama_key,
+                    use_ollama=use_ollama,
+                    ollama_model=ollama_model,
+                    ollama_base_url=ollama_base_url
+                )
                 refined_result = refined_extractor.extract(pdf_path, ticker)
                 results[ticker]['refined'] = refined_result.model_dump()
                 print(f"  ✓ Refined extraction complete")

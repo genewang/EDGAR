@@ -21,6 +21,8 @@ pip install -r requirements.txt
 
 ### 2. Configure API Keys
 
+#### Option A: Using OpenAI (Default)
+
 Create a `.env` file in the project root:
 
 ```bash
@@ -30,6 +32,40 @@ cp .env.example .env
 Then edit `.env` and add your API keys:
 - `OPENAI_API_KEY`: Required for both baseline and refined extraction
 - `LLAMA_CLOUD_API_KEY`: Required for refined extraction (get from https://cloud.llamaindex.ai/)
+
+#### Option B: Using Local Ollama Server
+
+To temporarily switch to a local Ollama server:
+
+1. **Install Ollama support**:
+   ```bash
+   pip install llama-index-llms-ollama
+   ```
+
+2. **Start Ollama server** and pull the model:
+   ```bash
+   ollama serve
+   ollama pull gpt-oss:20b
+   ```
+
+3. **Use the `--use-ollama` flag** when running extraction:
+   ```bash
+   python extract_10k_data.py --mode both --use-ollama --pdf-dir pdfs
+   ```
+
+   Or set environment variable:
+   ```bash
+   export USE_OLLAMA=true
+   python extract_10k_data.py --mode both --pdf-dir pdfs
+   ```
+
+**Configuration Options:**
+- `--use-ollama`: Use local Ollama server instead of OpenAI
+- `--ollama-model MODEL`: Specify Ollama model (default: `gpt-oss:20b`)
+- `--ollama-base-url URL`: Specify Ollama server URL (default: `http://localhost:11434`)
+- Environment variables: `USE_OLLAMA`, `OLLAMA_MODEL`, `OLLAMA_BASE_URL`
+
+**Note:** When using Ollama, you may still need `OPENAI_API_KEY` for embeddings if Ollama embeddings are unavailable.
 
 ### 3. Prepare Ground Truth Data
 
@@ -60,8 +96,14 @@ python extract_10k_data.py --mode baseline --pdf-dir pdfs
 
 ### Extract with Refined Only
 
+**With OpenAI:**
 ```bash
 python extract_10k_data.py --mode refined --pdf-dir pdfs
+```
+
+**With Ollama:**
+```bash
+python extract_10k_data.py --mode refined --pdf-dir pdfs --use-ollama
 ```
 
 ### Extract Without Evaluation
@@ -117,6 +159,13 @@ The evaluation framework compares extracted values against ground truth with:
 ### "OPENAI_API_KEY not found"
 - Create `.env` file with your OpenAI API key
 - Or export: `export OPENAI_API_KEY=your_key`
+- Or use `--use-ollama` flag to use local Ollama server instead
+
+### "Ollama support requested but llama-index-llms-ollama is not installed"
+- Install: `pip install llama-index-llms-ollama`
+- Make sure Ollama server is running: `ollama serve`
+- Verify model is available: `ollama list`
+- Check Ollama server URL matches (default: `http://localhost:11434`)
 
 ### Low Accuracy
 - Check ground truth values are correct

@@ -11,3 +11,7 @@ pandas==2.2.0
 python-dotenv==1.0.0
 pypdf==4.0.1
 
+# Optional: Ollama support for local models
+# Install with: pip install llama-index-llms-ollama
+# llama-index-llms-ollama>=0.1.0
+
