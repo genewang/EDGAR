@@ -45,12 +45,21 @@ def main():
     ground_truth_data = []
     for ticker, data in complete_companies:
         metrics = data['metrics']
+        # Extract CIK from HTML file path if available
+        cik = ''
+        html_file = data.get('html_file', '')
+        if html_file:
+            import re
+            match = re.search(r'/(\d{10})/', html_file)
+            if match:
+                cik = match.group(1)
+        
         ground_truth_data.append({
             'ticker': ticker,
-            'north_america_revenue': metrics.get('north_america_revenue'),
-            'depreciation_amortization': metrics.get('depreciation_amortization'),
-            'lease_liabilities': metrics.get('lease_liabilities'),
-            'html_file': data.get('html_file', ''),
+            'cik': cik,
+            'total_revenue': metrics.get('total_revenue'),
+            'net_income': metrics.get('net_income'),
+            'html_file': html_file,
             'fiscal_year': metrics.get('fiscal_year', '')
         })
     
@@ -68,11 +77,20 @@ def main():
     print("-" * 80)
     for ticker, data in complete_companies:
         metrics = data['metrics']
+        # Extract CIK from HTML file path if available
+        cik = ''
+        html_file = data.get('html_file', '')
+        if html_file:
+            import re
+            match = re.search(r'/(\d{10})/', html_file)
+            if match:
+                cik = match.group(1)
+        
         print(f"{ticker}:")
-        print(f"  Revenue: ${metrics.get('north_america_revenue', 0):,.0f}M")
-        print(f"  Depreciation: ${metrics.get('depreciation_amortization', 0):,.0f}M")
-        print(f"  Lease: ${metrics.get('lease_liabilities', 0):,.0f}M")
-        print(f"  File: {data.get('html_file', 'N/A')}")
+        print(f"  CIK: {cik}")
+        print(f"  Total Revenue: ${metrics.get('total_revenue', 0):,.0f}M")
+        print(f"  Net Income: ${metrics.get('net_income', 0):,.0f}M")
+        print(f"  File: {html_file}")
         print()
     
     # Create summary document
@@ -81,22 +99,31 @@ def main():
         f.write("# Ground Truth Dataset Summary\n\n")
         f.write(f"**Total Companies**: {len(complete_companies)}\n\n")
         f.write("## Companies with All 3 Metrics\n\n")
-        f.write("| Ticker | Revenue (M) | Depreciation (M) | Lease (M) | Fiscal Year |\n")
-        f.write("|--------|------------|------------------|-----------|-------------|\n")
+        f.write("| Ticker | CIK | Total Revenue (M) | Net Income (M) | Fiscal Year |\n")
+        f.write("|--------|-----|------------------|----------------|-------------|\n")
         
         for ticker, data in complete_companies:
             metrics = data['metrics']
+            # Extract CIK from HTML file path if available
+            cik = ''
+            html_file = data.get('html_file', '')
+            if html_file:
+                import re
+                match = re.search(r'/(\d{10})/', html_file)
+                if match:
+                    cik = match.group(1)
+            
             f.write(f"| {ticker} | ")
-            f.write(f"${metrics.get('north_america_revenue', 0):,.0f} | ")
-            f.write(f"${metrics.get('depreciation_amortization', 0):,.0f} | ")
-            f.write(f"${metrics.get('lease_liabilities', 0):,.0f} | ")
+            f.write(f"{cik} | ")
+            f.write(f"${metrics.get('total_revenue', 0):,.0f} | ")
+            f.write(f"${metrics.get('net_income', 0):,.0f} | ")
             f.write(f"{metrics.get('fiscal_year', 'N/A')} |\n")
         
         f.write("\n## Selection Criteria\n\n")
         f.write("Companies were selected based on:\n")
-        f.write("1. **North America Revenue**: Clearly reported in segment/geographic tables\n")
-        f.write("2. **Depreciation & Amortization**: From cash flow statement\n")
-        f.write("3. **Lease Liabilities**: From balance sheet (current + non-current)\n")
+        f.write("1. **CIK**: Central Index Key from SEC filing header\n")
+        f.write("2. **Total Revenue**: From Income Statement (Statement of Operations)\n")
+        f.write("3. **Net Income**: From Income Statement (Statement of Operations)\n")
         f.write("\n## Company Types\n\n")
         f.write("- **Retail**: WMT, HD, COST (clear geographic segments + leases)\n")
         f.write("- **Media/Entertainment**: DIS (geographic segments + leases)\n")

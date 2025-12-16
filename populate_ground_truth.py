@@ -25,18 +25,18 @@ def main():
         
         df = pd.DataFrame({
             'ticker': tickers,
-            'north_america_revenue': [None] * len(tickers),
-            'depreciation_amortization': [None] * len(tickers),
-            'lease_liabilities': [None] * len(tickers)
+            'cik': [None] * len(tickers),
+            'total_revenue': [None] * len(tickers),
+            'net_income': [None] * len(tickers)
         })
     
     print("=" * 60)
     print("Ground Truth Data Entry")
     print("=" * 60)
     print("\nFor each company, you'll need to extract:")
-    print("1. North America Revenue (millions USD)")
-    print("2. Depreciation & Amortization (millions USD)")
-    print("3. Total Lease Liabilities (millions USD)")
+    print("1. CIK (Central Index Key) - from filing header/cover page")
+    print("2. Total Revenue (millions USD) - from Income Statement")
+    print("3. Net Income (millions USD) - from Income Statement")
     print("\nOpen the PDFs in the 'pdfs' directory to find these values.")
     print("=" * 60)
     
@@ -53,36 +53,39 @@ def main():
         print(f"\n[{idx + 1}/{len(df)}] {ticker} - {pdf_name}")
         print("-" * 60)
         
-        # North America Revenue
-        current_na = row.get('north_america_revenue', '')
-        if pd.notna(current_na) and current_na != '':
-            print(f"Current North America Revenue: {current_na}")
-        na_rev = input("North America Revenue (millions USD, or press Enter to skip): ").strip()
-        if na_rev:
+        # CIK
+        current_cik = row.get('cik', '')
+        if pd.notna(current_cik) and current_cik != '':
+            print(f"Current CIK: {current_cik}")
+        cik = input("CIK (10-digit identifier, or press Enter to skip): ").strip()
+        if cik:
+            # Normalize CIK to 10 digits
+            cik_clean = cik.replace('-', '').replace(' ', '').strip()
             try:
-                df.at[idx, 'north_america_revenue'] = float(na_rev)
+                cik_int = int(cik_clean)
+                df.at[idx, 'cik'] = str(cik_int).zfill(10)
+            except ValueError:
+                print(f"  Invalid CIK format, skipping...")
+        
+        # Total Revenue
+        current_rev = row.get('total_revenue', '')
+        if pd.notna(current_rev) and current_rev != '':
+            print(f"Current Total Revenue: {current_rev}")
+        total_rev = input("Total Revenue (millions USD, or press Enter to skip): ").strip()
+        if total_rev:
+            try:
+                df.at[idx, 'total_revenue'] = float(total_rev)
             except ValueError:
                 print(f"  Invalid number, skipping...")
         
-        # Depreciation & Amortization
-        current_da = row.get('depreciation_amortization', '')
-        if pd.notna(current_da) and current_da != '':
-            print(f"Current Depreciation & Amortization: {current_da}")
-        dep_amort = input("Depreciation & Amortization (millions USD, or press Enter to skip): ").strip()
-        if dep_amort:
+        # Net Income
+        current_ni = row.get('net_income', '')
+        if pd.notna(current_ni) and current_ni != '':
+            print(f"Current Net Income: {current_ni}")
+        net_inc = input("Net Income (millions USD, or press Enter to skip): ").strip()
+        if net_inc:
             try:
-                df.at[idx, 'depreciation_amortization'] = float(dep_amort)
-            except ValueError:
-                print(f"  Invalid number, skipping...")
-        
-        # Lease Liabilities
-        current_lease = row.get('lease_liabilities', '')
-        if pd.notna(current_lease) and current_lease != '':
-            print(f"Current Lease Liabilities: {current_lease}")
-        lease_liab = input("Total Lease Liabilities (millions USD, or press Enter to skip): ").strip()
-        if lease_liab:
-            try:
-                df.at[idx, 'lease_liabilities'] = float(lease_liab)
+                df.at[idx, 'net_income'] = float(net_inc)
             except ValueError:
                 print(f"  Invalid number, skipping...")
     

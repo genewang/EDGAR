@@ -98,22 +98,22 @@ class FinancialMetrics(BaseModel):
     company_ticker: str = Field(..., description="Company ticker symbol")
     fiscal_year: Optional[int] = Field(None, description="Fiscal year of the report")
     
-    north_america_revenue: Optional[float] = Field(
+    cik: Optional[str] = Field(
         None, 
-        description="Revenue attributed to North America region (in millions USD)"
+        description="Central Index Key (CIK) - company identifier from SEC filings"
     )
     
-    depreciation_amortization: Optional[float] = Field(
+    total_revenue: Optional[float] = Field(
         None,
-        description="Total depreciation and amortization from Cash Flow Statement (in millions USD)"
+        description="Total revenue from Income Statement (in millions USD)"
     )
     
-    lease_liabilities: Optional[float] = Field(
+    net_income: Optional[float] = Field(
         None,
-        description="Sum of current and non-current lease liabilities from Balance Sheet (in millions USD)"
+        description="Net income from Income Statement (in millions USD)"
     )
     
-    @field_validator('north_america_revenue', 'depreciation_amortization', 'lease_liabilities', mode='before')
+    @field_validator('total_revenue', 'net_income', mode='before')
     @classmethod
     def validate_numeric(cls, v):
         """Convert string numbers to float, handle None."""
@@ -130,14 +130,38 @@ class FinancialMetrics(BaseModel):
                 return None
         return float(v) if v is not None else None
     
+    @field_validator('cik', mode='before')
+    @classmethod
+    def validate_cik(cls, v):
+        """Validate and format CIK."""
+        if v is None or v == "":
+            return None
+        if isinstance(v, (int, float)):
+            # Convert to string and pad with leading zeros if needed
+            cik_str = str(int(v))
+            # CIK is typically 10 digits, pad with leading zeros
+            return cik_str.zfill(10)
+        if isinstance(v, str):
+            # Remove any formatting and pad with leading zeros
+            cik_clean = v.replace('-', '').replace(' ', '').strip()
+            if cik_clean == '':
+                return None
+            try:
+                # Validate it's numeric
+                cik_int = int(cik_clean)
+                return str(cik_int).zfill(10)
+            except ValueError:
+                return v.strip()  # Return as-is if not numeric
+        return str(v) if v is not None else None
+    
     class Config:
         json_schema_extra = {
             "example": {
                 "company_ticker": "AAPL",
                 "fiscal_year": 2023,
-                "north_america_revenue": 167814.0,
-                "depreciation_amortization": 11104.0,
-                "lease_liabilities": 11129.0
+                "cik": "0000320193",
+                "total_revenue": 383285.0,
+                "net_income": 96995.0
             }
         }
 
@@ -472,11 +496,11 @@ class BaselineExtractor:
         print(f"  [Baseline] Querying LLM for financial metrics...")
         query = """
         Extract the following financial metrics for the most recent fiscal year:
-        1. North America Revenue (or US Revenue) - from Segment Information or Geographic Revenue tables
-        2. Depreciation and Amortization - from Cash Flow Statement
-        3. Total Lease Liabilities (sum of current and non-current) - from Balance Sheet
+        1. CIK (Central Index Key) - company identifier, typically found in the header or cover page of the 10-K filing
+        2. Total Revenue - from the Income Statement (Statement of Operations), look for "Total revenue", "Net sales", or "Revenue"
+        3. Net Income - from the Income Statement, look for "Net income", "Net earnings", or "Net income (loss)"
         
-        Return the values in millions of USD. If a value cannot be found, set it to None.
+        Return the values in millions of USD (except CIK which is a string identifier). If a value cannot be found, set it to None.
         """
         
         logger.info(f"Querying LLM with query length: {len(query)}")
@@ -647,28 +671,29 @@ class RefinedExtractor:
         query = """
         Extract the following financial metrics for the most recent fiscal year from the 10-K report:
         
-        1. **North America Revenue** (or US Revenue): 
-           - Look in Segment Information tables (Item 1, Item 7, or Item 8)
-           - Find revenue attributed to North America or United States region
+        1. **CIK (Central Index Key)**:
+           - Look in the cover page or header of the 10-K filing
+           - Find "Commission File Number" or "CIK" or "Central Index Key"
+           - Format as a 10-digit string (e.g., "0000320193")
+           - This is a company identifier, not a financial metric
+        
+        2. **Total Revenue**:
+           - Look in the Income Statement (Statement of Operations) in Item 8
+           - Find "Total revenue", "Net sales", "Revenue", or "Net revenue"
+           - Use the most recent fiscal year column
            - Value should be in millions of USD
         
-        2. **Depreciation and Amortization**:
-           - Look in the Statement of Cash Flows (Item 8)
-           - Find the line item for "Depreciation and amortization" or "Depreciation and amortization expense"
-           - Value should be in millions of USD
-        
-        3. **Total Lease Liabilities**:
-           - Look in the Balance Sheet (Item 8)
-           - Find "Lease liabilities" or "Operating lease liabilities"
-           - If split between "Current" and "Non-current", sum them
-           - If a "Total" line exists, use that
-           - Value should be in millions of USD
+        3. **Net Income**:
+           - Look in the Income Statement (Statement of Operations) in Item 8
+           - Find "Net income", "Net earnings", "Net income (loss)", or "Net loss"
+           - Use the most recent fiscal year column
+           - Value should be in millions of USD (negative if loss)
         
         Pay special attention to:
         - Table structure (rows and columns)
         - Fiscal year labels (ensure you get the most recent year)
         - Units (convert to millions if needed)
-        - Negative numbers (may be in parentheses)
+        - Negative numbers (may be in parentheses or shown as negative)
         
         If a value cannot be found, set it to None.
         """
@@ -753,7 +778,7 @@ class Evaluator:
         }
         
         # Evaluate each metric
-        for metric in ['north_america_revenue', 'depreciation_amortization', 'lease_liabilities']:
+        for metric in ['cik', 'total_revenue', 'net_income']:
             extracted_val = getattr(extracted, metric)
             gt_val = gt.get(metric)
             
@@ -767,27 +792,53 @@ class Evaluator:
                 continue
             
             if extracted_val is None:
-                results['metrics'][metric] = {
-                    'extracted': None,
-                    'ground_truth': float(gt_val),
-                    'match': False,
-                    'error': 'Value not extracted'
-                }
+                # For CIK, convert to string for comparison
+                if metric == 'cik':
+                    results['metrics'][metric] = {
+                        'extracted': None,
+                        'ground_truth': str(gt_val),
+                        'match': False,
+                        'error': 'Value not extracted'
+                    }
+                else:
+                    results['metrics'][metric] = {
+                        'extracted': None,
+                        'ground_truth': float(gt_val),
+                        'match': False,
+                        'error': 'Value not extracted'
+                    }
                 continue
             
-            # Check if values match within tolerance
-            diff = abs(extracted_val - float(gt_val))
-            relative_error = diff / abs(float(gt_val)) if float(gt_val) != 0 else float('inf')
-            match = relative_error <= tolerance
-            
-            results['metrics'][metric] = {
-                'extracted': extracted_val,
-                'ground_truth': float(gt_val),
-                'match': match,
-                'absolute_error': diff,
-                'relative_error': relative_error,
-                'error_type': self._classify_error(extracted_val, float(gt_val), relative_error)
-            }
+            # Special handling for CIK (string comparison)
+            if metric == 'cik':
+                # Normalize CIK values for comparison (remove leading zeros, dashes, etc.)
+                extracted_cik = str(extracted_val).replace('-', '').replace(' ', '').strip()
+                gt_cik = str(gt_val).replace('-', '').replace(' ', '').strip()
+                # Pad with leading zeros to 10 digits for comparison
+                extracted_cik = extracted_cik.zfill(10)
+                gt_cik = gt_cik.zfill(10)
+                match = extracted_cik == gt_cik
+                
+                results['metrics'][metric] = {
+                    'extracted': extracted_val,
+                    'ground_truth': str(gt_val),
+                    'match': match,
+                    'error_type': 'None (exact match)' if match else 'Major (wrong value)'
+                }
+            else:
+                # Numeric comparison for revenue and net income
+                diff = abs(extracted_val - float(gt_val))
+                relative_error = diff / abs(float(gt_val)) if float(gt_val) != 0 else float('inf')
+                match = relative_error <= tolerance
+                
+                results['metrics'][metric] = {
+                    'extracted': extracted_val,
+                    'ground_truth': float(gt_val),
+                    'match': match,
+                    'absolute_error': diff,
+                    'relative_error': relative_error,
+                    'error_type': self._classify_error(extracted_val, float(gt_val), relative_error)
+                }
         
         # Calculate overall accuracy
         matches = sum(1 for m in results['metrics'].values() if m.get('match') is True)
@@ -864,15 +915,44 @@ def main():
     if args.mode in ['refined', 'both'] and not llama_key:
         print("Warning: LLAMA_CLOUD_API_KEY not found. Refined extraction may fall back to baseline.")
     
-    # Get PDF files
+    # Get PDF files - filter to only those in ground truth if specified
     pdf_dir = Path(args.pdf_dir)
-    pdf_files = list(pdf_dir.glob("*.pdf"))
+    
+    # If ground truth is specified, only process PDFs for those tickers
+    ground_truth_path = Path(args.ground_truth)
+    target_tickers = set()
+    
+    if ground_truth_path.exists():
+        gt_df = pd.read_csv(ground_truth_path)
+        target_tickers = set(gt_df['ticker'].str.strip().str.upper())
+        print(f"Found {len(target_tickers)} companies in ground truth: {sorted(target_tickers)}")
+    
+    # Get all PDF files
+    all_pdf_files = list(pdf_dir.glob("*.pdf"))
+    
+    # Filter to only PDFs for companies in ground truth
+    if target_tickers:
+        pdf_files = []
+        for pdf_path in all_pdf_files:
+            # Extract ticker from filename (e.g., AAPL_Apple_10K_0000.pdf -> AAPL)
+            ticker = pdf_path.stem.split('_')[0].upper()
+            if ticker in target_tickers:
+                pdf_files.append(pdf_path)
+            else:
+                print(f"Skipping {pdf_path.name} (not in ground truth)")
+        
+        if not pdf_files:
+            print(f"Error: No PDF files found for companies in {ground_truth_path}")
+            print(f"Expected tickers: {sorted(target_tickers)}")
+            sys.exit(1)
+    else:
+        pdf_files = all_pdf_files
     
     if not pdf_files:
         print(f"Error: No PDF files found in {pdf_dir}")
         sys.exit(1)
     
-    print(f"Found {len(pdf_files)} PDF files to process")
+    print(f"Processing {len(pdf_files)} PDF file(s) from ground truth")
     print("=" * 60)
     
     results = {}
@@ -934,7 +1014,7 @@ def main():
         ground_truth_path = Path(args.ground_truth)
         if not ground_truth_path.exists():
             print(f"\nWarning: Ground truth file {ground_truth_path} not found. Skipping evaluation.")
-            print("Create a ground_truth.csv file with columns: ticker, north_america_revenue, depreciation_amortization, lease_liabilities")
+            print("Create a ground_truth.csv file with columns: ticker, cik, total_revenue, net_income")
         else:
             print(f"\n{'=' * 60}")
             print("Evaluating results against ground truth...")
